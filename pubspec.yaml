@@ -21,7 +21,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  all_box: ^0.6.0
 
 dev_dependencies:
   flutter_test:
