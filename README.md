@@ -86,6 +86,14 @@ app is running.
 - Use the refresh button, or just wait — the panel polls every 2 seconds
   on its own.
 
+<p align="center">
+  <img src="doc/screenshot_containers_list.png" alt="Containers list and container detail panel" width="800">
+</p>
+
+<p align="center">
+  <img src="doc/screenshot_key_editor.png" alt="Key editor dialog, editing a value as raw JSON" width="800">
+</p>
+
 ## 🛠️ How it works
 
 - The extension talks to the inspected app only through the VM Service —

@@ -91,6 +91,14 @@ enquanto seu app está em execução.
 - Use o botão de atualização, ou apenas aguarde — o painel faz polling a
   cada 2 segundos automaticamente.
 
+<p align="center">
+  <img src="doc/screenshot_containers_list.png" alt="Lista de containers e painel de detalhe do container" width="800">
+</p>
+
+<p align="center">
+  <img src="doc/screenshot_key_editor.png" alt="Diálogo de edição de chave, editando um valor como JSON bruto" width="800">
+</p>
+
 ## 🛠️ Como funciona
 
 - A extensão conversa com o app inspecionado apenas através do VM

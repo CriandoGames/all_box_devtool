@@ -40571,7 +40571,7 @@ if(o==null){n=A.fg("serviceManager",l)
 o=p.a=A.ax3("package:all_box/src/core/all_box_impl.dart",k,A.fg("serviceManager",l).e.y,n)}s=3
 return A.t(o.aiO(a,null),$async$n4)
 case 3:m=c
-if(m==null)throw A.i(A.ak("AllBoxVmServiceBridge: `"+a+"` returned null. Is the inspected app using all_box >= 0.5.0?"))
+if(m==null)throw A.i(A.ak("AllBoxVmServiceBridge: `"+a+"` returned null. Is the inspected app using all_box >= 0.6.0?"))
 s=4
 return A.t(o.qQ(m,o),$async$n4)
 case 4:l=c.gqB()

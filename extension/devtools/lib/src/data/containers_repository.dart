@@ -16,9 +16,9 @@ abstract class ContainersBridge {
 /// Single source of truth for the containers currently visible in the
 /// inspected app.
 ///
-/// The extension is pull-based because `all_box` 0.5.0 exposes debug
-/// snapshots, not mutation events. [PollingController] and manual refresh
-/// actions call [refresh] to fetch a new snapshot through the VM Service.
+/// The extension currently uses pull-based refreshes. `all_box` 0.6.0 also
+/// exposes debug mutation events, but this package still relies on polling and
+/// manual refresh until that event stream is wired into the UI.
 class ContainersRepository {
   ContainersRepository({
     required ContainersBridge bridge,

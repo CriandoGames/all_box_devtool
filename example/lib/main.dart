@@ -1,35 +1,73 @@
 import 'dart:math';
 
 import 'package:all_box/all_box.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await AllBox.memory(
-    'settings',
-    initialData: {
-      'theme': 'dark',
-      'language': 'pt-BR',
-      'launchCount': 1,
-      'flags': {'beta': true, 'debugTools': true},
-    },
-  );
+  final storageInfo = await initializeExampleStorage();
 
-  await AllBox.memory(
-    'session',
-    initialData: {
-      'userId': 'user_001',
-      'token': 'local-dev-token',
-      'roles': ['admin', 'tester'],
-    },
-  );
+  runApp(ExampleApp(storageInfo: storageInfo));
+}
 
-  runApp(const ExampleApp());
+Future<ExampleStorageInfo> initializeExampleStorage({
+  bool forceMemory = false,
+}) async {
+  final shouldUseMemory = forceMemory || kIsWeb;
+
+  if (shouldUseMemory) {
+    await _initializeMemoryStorage();
+    return const ExampleStorageInfo(
+      mode: 'memory',
+      description: 'In-memory storage. Useful for Web and quick DevTools tests.',
+    );
+  }
+
+  final directory = await getApplicationDocumentsDirectory();
+  await _initializeIoStorage(directory.path);
+  return ExampleStorageInfo(
+    mode: 'io',
+    description: 'Android/native file storage at ${directory.path}',
+  );
+}
+
+Future<void> _initializeMemoryStorage() async {
+  await AllBox.memory('settings', initialData: _settingsSeed);
+  await AllBox.memory('session', initialData: _sessionSeed);
+}
+
+Future<void> _initializeIoStorage(String path) async {
+  await AllBox.init('settings', path: path, initialData: _settingsSeed);
+  await AllBox.init('session', path: path, initialData: _sessionSeed);
+}
+
+const _settingsSeed = {
+  'theme': 'dark',
+  'language': 'pt-BR',
+  'launchCount': 1,
+  'flags': {'beta': true, 'debugTools': true},
+};
+
+const _sessionSeed = {
+  'userId': 'user_001',
+  'token': 'local-dev-token',
+  'roles': ['admin', 'tester'],
+};
+
+class ExampleStorageInfo {
+  const ExampleStorageInfo({required this.mode, required this.description});
+
+  final String mode;
+  final String description;
 }
 
 class ExampleApp extends StatefulWidget {
-  const ExampleApp({super.key});
+  const ExampleApp({super.key, required this.storageInfo});
+
+  final ExampleStorageInfo storageInfo;
 
   @override
   State<ExampleApp> createState() => _ExampleAppState();
@@ -91,6 +129,14 @@ class _ExampleAppState extends State<ExampleApp> {
         body: ListView(
           padding: const EdgeInsets.all(16),
           children: [
+            _StatusCard(
+              title: 'storage',
+              values: {
+                'mode': widget.storageInfo.mode,
+                'description': widget.storageInfo.description,
+              },
+            ),
+            const SizedBox(height: 12),
             _StatusCard(
               title: 'settings',
               values: {

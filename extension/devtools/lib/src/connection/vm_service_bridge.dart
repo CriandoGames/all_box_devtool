@@ -62,7 +62,7 @@ class AllBoxVmServiceBridge implements ContainersBridge {
     if (instanceRef == null) {
       throw StateError(
         'AllBoxVmServiceBridge: `$expression` returned null. Is the '
-        'inspected app using all_box >= 0.5.0?',
+        'inspected app using all_box >= 0.6.0?',
       );
     }
 
