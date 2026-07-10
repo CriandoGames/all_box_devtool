@@ -2,6 +2,10 @@
   <img src="doc/banner.svg" alt="all_box_devtool" width="720">
 </p>
 
+<p align="center">
+  <img src="doc/screenshot_overview.png" alt="all_box_devtool panel next to the inspected app, editing a list value" width="900">
+</p>
+
 <h1 align="center">all_box_devtool</h1>
 
 <p align="center">
