@@ -1,0 +1,12 @@
+{
+    "name": "all_box_devtool",
+    "short_name": "all_box_devtool",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0175C2",
+    "theme_color": "#0175C2",
+    "description": "DevTools extension for all_box.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": []
+}
