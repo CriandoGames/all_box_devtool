@@ -26,7 +26,7 @@
 
 - [Funcionalidades](#-funcionalidades)
 - [Requisitos](#-requisitos)
-- [Como começar](#-como-começar)
+- [Passo a passo](#-passo-a-passo)
 - [Uso](#-uso)
 - [Como funciona](#️-como-funciona)
 - [Informações adicionais](#-informações-adicionais)
@@ -66,20 +66,42 @@ Foi o `all_box` 0.6.0 que introduziu o `AllBoxInspector` — a superfície
 de introspecção somente-leitura e debug-only que esta extensão lê através
 do VM Service. Nada mais é exigido do lado do app inspecionado.
 
-## 📦 Como começar
+## 📦 Passo a passo
 
-1. Garanta que seu app depende de `all_box: ^0.6.0` ou superior.
-2. Adicione este pacote como `dev_dependency`:
+1. No app que usa `all_box`, garanta que o `pubspec.yaml` tenha o
+   `all_box` em `dependencies` e o `all_box_devtool` em
+   `dev_dependencies`:
 
    ```yaml
+   dependencies:
+     all_box: ^0.6.0
+
    dev_dependencies:
      all_box_devtool: ^1.0.0
    ```
 
-3. Rode `flutter pub get`.
-4. Rode seu app, abra o DevTools e habilite a extensão quando solicitado —
-   veja
-   [Use a DevTools extension](https://docs.flutter.dev/tools/devtools/extensions#use-a-devtools-extension).
+2. Rode:
+
+   ```sh
+   flutter pub get
+   ```
+
+3. Execute o app em modo `debug` ou `profile`:
+
+   ```sh
+   flutter run
+   ```
+
+4. Abra o Flutter/Dart DevTools pelo IDE ou pelo link exibido no
+   terminal.
+5. Na primeira abertura, habilite a extensão `all_box_devtool` quando o
+   DevTools solicitar permissão.
+6. Abra a aba "all_box_devtool".
+7. Selecione um container para ver suas chaves, editar valores como JSON
+   bruto ou remover entradas.
+
+Mais detalhes sobre a permissão de extensões estão na documentação oficial:
+[Use a DevTools extension](https://docs.flutter.dev/tools/devtools/extensions#use-a-devtools-extension).
 
 ## 🧪 Uso
 

@@ -26,7 +26,7 @@
 
 - [Features](#-features)
 - [Requirements](#-requirements)
-- [Getting started](#-getting-started)
+- [Step-by-step setup](#-step-by-step-setup)
 - [Usage](#-usage)
 - [How it works](#️-how-it-works)
 - [Additional information](#-additional-information)
@@ -64,20 +64,41 @@ dependencies:
 read-only introspection surface this extension reads through the VM
 Service. Nothing else is required on the inspected app's side.
 
-## 📦 Getting started
+## 📦 Step-by-step setup
 
-1. Make sure your app depends on `all_box: ^0.6.0` or later.
-2. Add this package as a `dev_dependency`:
+1. In the app that uses `all_box`, make sure `pubspec.yaml` has `all_box`
+   in `dependencies` and `all_box_devtool` in `dev_dependencies`:
 
    ```yaml
+   dependencies:
+     all_box: ^0.6.0
+
    dev_dependencies:
      all_box_devtool: ^1.0.0
    ```
 
-3. Run `flutter pub get`.
-4. Run your app, open DevTools, and enable the extension when prompted —
-   see
-   [Use a DevTools extension](https://docs.flutter.dev/tools/devtools/extensions#use-a-devtools-extension).
+2. Run:
+
+   ```sh
+   flutter pub get
+   ```
+
+3. Start the app in `debug` or `profile` mode:
+
+   ```sh
+   flutter run
+   ```
+
+4. Open Flutter/Dart DevTools from your IDE or from the URL printed in
+   the terminal.
+5. On first use, enable the `all_box_devtool` extension when DevTools asks
+   for permission.
+6. Open the "all_box_devtool" tab.
+7. Select a container to inspect its keys, edit values as raw JSON, or
+   remove entries.
+
+For more details about extension permissions, see the official docs:
+[Use a DevTools extension](https://docs.flutter.dev/tools/devtools/extensions#use-a-devtools-extension).
 
 ## 🧪 Usage
 
