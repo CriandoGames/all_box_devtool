@@ -10,6 +10,16 @@ import 'containers_repository.dart';
 /// only knows how to fetch once; this controller is the only place that
 /// knows about timing/scheduling (see ARCHITECTURE.md, "Princípios de
 /// separação": `data/` is the only place that decides *when* to fetch).
+///
+/// **PT-BR:** Decide *quando* [ContainersRepository.refresh] roda: um timer
+/// periódico mais atualizações manuais (ex.: um botão de refresh),
+/// coalescidas para que uma atualização manual não entre em corrida com um
+/// tick do timer já em andamento.
+///
+/// Mantido separado de [ContainersRepository] de propósito — o repositório
+/// só sabe buscar uma vez; este controller é o único lugar que sabe sobre
+/// timing/agendamento (veja ARCHITECTURE.md, "Princípios de separação":
+/// `data/` é o único lugar que decide *quando* buscar).
 class PollingController {
   PollingController({
     required this.repository,
@@ -21,6 +31,11 @@ class PollingController {
   /// How often to poll while [start]ed. 2s by default: frequent enough to
   /// feel live for typical interactive debugging, cheap enough not to
   /// spam the VM Service with `eval` calls.
+  ///
+  /// **PT-BR:** Com que frequência fazer polling enquanto [start]ado. 2s
+  /// por padrão: frequente o suficiente para parecer ao vivo em depuração
+  /// interativa típica, barato o suficiente para não sobrecarregar o VM
+  /// Service com chamadas `eval`.
   final Duration interval;
 
   Timer? _timer;

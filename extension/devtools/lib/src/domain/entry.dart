@@ -4,6 +4,14 @@
 /// mainly to give the UI a stable, named type instead of passing raw
 /// `MapEntry`s around, and a place to hang derived display info (runtime
 /// type label) without recomputing it in every widget.
+///
+/// **PT-BR:** Uma única linha de chave/valor dentro de um container, como
+/// mostrado na tabela de `features/container_detail`. Wrapper fino sobre um
+/// `MapEntry<String, dynamic>` de `ContainerSnapshot.entries` — existe
+/// principalmente para dar à UI um tipo estável e nomeado em vez de passar
+/// `MapEntry`s crus por aí, e um lugar para pendurar informação derivada de
+/// exibição (rótulo de tipo em tempo de execução) sem recalculá-la em cada
+/// widget.
 class ContainerEntry {
   const ContainerEntry({required this.key, required this.value});
 

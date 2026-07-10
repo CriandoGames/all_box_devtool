@@ -1,40 +1,112 @@
-# all_box_devtool
+<p align="center">
+  <img src="doc/banner.svg" alt="all_box_devtool" width="720">
+</p>
 
-A DevTools extension for [`all_box`](https://pub.dev/packages/all_box): browse
-and edit `AllBox` containers from Flutter/Dart DevTools.
+<h1 align="center">all_box_devtool</h1>
 
-Requires the inspected app to depend on `all_box: ^0.5.0`, which provides the
-debug-only introspection API used by this extension.
+<p align="center">
+🇧🇷 <a href="https://github.com/CriandoGames/all_box_devtool/blob/main/README.pt-BR.md">Português</a> | 🇺🇸 English
+</p>
 
-## Features
+<p align="center">
+  <a href="https://github.com/CriandoGames/all_box_devtool/blob/main/LICENSE"><img src="https://img.shields.io/github/license/CriandoGames/all_box_devtool" alt="license"></a>
+  <img src="https://img.shields.io/badge/Flutter-DevTools%20extension-0175C2?logo=flutter&logoColor=white" alt="Flutter DevTools extension">
+  <img src="https://img.shields.io/badge/status-1.0.0%20%E2%80%94%20first%20release-brightgreen" alt="1.0.0 — first release">
+</p>
 
-- **Containers list**: every `AllBox` container currently alive in the inspected
-  app, filterable by name, with backend and pending-flush badges.
-- **Container detail**: a selected container's keys and values, filterable by
-  key name, plus storage summary.
-- **Edit in place**: tap a key to view, edit as raw JSON, or delete it. Writes
-  go to the running app through the VM Service.
-- **Polling refresh**: the panel polls every 2 seconds and also supports manual
-  refresh. `all_box` 0.5.0 does not emit mutation events.
+<p align="center">
+💡 A <a href="https://docs.flutter.dev/tools/devtools/extensions">DevTools extension</a> for <a href="https://pub.dev/packages/all_box"><code>all_box</code></a>: browse and edit <code>AllBox</code> containers straight from Flutter/Dart DevTools.
+</p>
 
-Introspection is a no-op in release builds, so the extension is intended for
-debug/profile sessions.
+## Table of contents
 
-## Getting Started
+- [Features](#-features)
+- [Requirements](#-requirements)
+- [Getting started](#-getting-started)
+- [Usage](#-usage)
+- [How it works](#️-how-it-works)
+- [Additional information](#-additional-information)
 
-1. Make sure your app depends on `all_box: ^0.5.0`.
+## 🚀 Features
+
+- 🔍 **Containers list.** Every `AllBox` container currently alive in the
+  inspected app, filterable by name, with backend/pending-flush badges.
+- 📄 **Container detail.** A selected container's keys and values,
+  filterable by key name, plus a storage summary (backend, key count,
+  approximate size).
+- ✏️ **Edit in place.** Tap a key to view it, edit it as raw JSON, or
+  delete it — writes go straight to the running app through the VM
+  Service.
+- 🔁 **Polling refresh.** The panel refreshes automatically every 2
+  seconds, plus a manual refresh button. `all_box` 0.6.0 has no mutation
+  events (see [How it works](#️-how-it-works)), so this is pull-based by
+  design, not a limitation waiting to be fixed.
+- 🧯 **Debug/profile only.** `all_box`'s introspection (`AllBoxInspector`)
+  is a no-op in release builds — nothing here adds runtime overhead to a
+  shipped app, and there's nothing to see in a release build's DevTools
+  session, by design.
+
+## 📋 Requirements
+
+The app you're debugging must depend on:
+
+```yaml
+dependencies:
+  all_box: ^0.6.0
+```
+
+`all_box` 0.6.0 is what introduced `AllBoxInspector` — the debug-only,
+read-only introspection surface this extension reads through the VM
+Service. Nothing else is required on the inspected app's side.
+
+## 📦 Getting started
+
+1. Make sure your app depends on `all_box: ^0.5.0` or later.
 2. Add this package as a `dev_dependency`:
 
    ```yaml
    dev_dependencies:
-     all_box_devtool: ^0.2.0
+     all_box_devtool: ^1.0.0
    ```
 
 3. Run `flutter pub get`.
-4. Run your app, open DevTools, and enable the extension when prompted.
+4. Run your app, open DevTools, and enable the extension when prompted —
+   see
+   [Use a DevTools extension](https://docs.flutter.dev/tools/devtools/extensions#use-a-devtools-extension).
 
-## Additional Information
+## 🧪 Usage
+
+Once enabled, a new "all_box_devtool" tab appears in DevTools while your
+app is running.
+
+- Select a container on the left to inspect its keys on the right.
+- Type in either search field to filter containers or keys.
+- Tap any key to view, edit (as raw JSON), or delete it.
+- Use the refresh button, or just wait — the panel polls every 2 seconds
+  on its own.
+
+## 🛠️ How it works
+
+- The extension talks to the inspected app only through the VM Service —
+  it evaluates `AllBoxInspector.snapshotAsJson()` (and, for writes,
+  `AllBox(container).write(...)`/`.remove(...)`) in the app's main
+  isolate. No package is added to the inspected app's own dependency
+  graph beyond `all_box` itself.
+- `all_box` has no built-in reactivity by design (see its own
+  [README](https://github.com/CriandoGames/all_box#-need-reactivity)), so
+  this extension is pull-based: a `PollingController` refreshes every 2
+  seconds, and every write/delete triggers an immediate extra refresh so
+  the UI reflects your own edits right away.
+- Full design rationale, folder-by-folder responsibilities, and the
+  reasoning behind each decision: [ARCHITECTURE.md](./ARCHITECTURE.md).
+
+## 📚 Additional information
 
 - Architecture and design notes: [ARCHITECTURE.md](./ARCHITECTURE.md).
 - `all_box`: <https://github.com/CriandoGames/all_box>.
 - Issues: <https://github.com/CriandoGames/all_box_devtool/issues>.
+
+---
+
+Issues and pull requests are welcome at the
+[GitHub repository](https://github.com/CriandoGames/all_box_devtool).

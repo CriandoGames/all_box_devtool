@@ -3,7 +3,7 @@ description: >
   DevTools extension for all_box: inspect and edit AllBox containers (keys,
   values, storage backend, pending flush state) from the Flutter/Dart
   DevTools, for apps that depend on all_box.
-version: 0.2.0
+version: 1.0.0
 homepage: https://github.com/CriandoGames/all_box_devtool
 repository: https://github.com/CriandoGames/all_box_devtool
 issue_tracker: https://github.com/CriandoGames/all_box_devtool/issues

@@ -5,6 +5,14 @@ import 'storage_backend.dart';
 ///
 /// No Flutter imports, no I/O, no dependency on `connection/` — this must
 /// stay trivially testable/mockable without a real VM Service connection.
+///
+/// **PT-BR:** Modelo de dados puro, espelhando a saída de
+/// `AllBoxContainerSnapshot.toJson()` do `all_box` (veja
+/// `all_box/lib/src/debug/all_box_container_snapshot.dart`).
+///
+/// Sem imports do Flutter, sem I/O, sem dependência de `connection/` — isto
+/// precisa continuar trivialmente testável/mockável sem uma conexão real
+/// com o VM Service.
 class ContainerSnapshot {
   const ContainerSnapshot({
     required this.container,
@@ -43,6 +51,9 @@ class ContainerSnapshot {
 
   /// Case-insensitive filter over key names, used by
   /// `features/container_detail`'s search field.
+  ///
+  /// **PT-BR:** Filtro case-insensitive sobre nomes de chave, usado pelo
+  /// campo de busca de `features/container_detail`.
   ContainerSnapshot filteredByKey(String query) {
     if (query.isEmpty) return this;
     final needle = query.toLowerCase();

@@ -12,6 +12,12 @@ void main() {
 /// handles the DevTools-to-extension handshake and populates the globals
 /// (`serviceManager`, `extensionManager`, `dtdManager`) used throughout
 /// `src/connection/`.
+///
+/// **PT-BR:** Ponto de entrada exigido pelo `package:devtools_extensions` —
+/// veja https://docs.flutter.dev/tools/devtools/custom-tool. O
+/// `DevToolsExtension` cuida do handshake entre o DevTools e a extensão e
+/// popula os globais (`serviceManager`, `extensionManager`, `dtdManager`)
+/// usados em todo o `src/connection/`.
 class AllBoxDevToolsExtension extends StatelessWidget {
   const AllBoxDevToolsExtension({super.key});
 

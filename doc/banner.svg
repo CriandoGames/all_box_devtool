@@ -1,0 +1,63 @@
+<svg width="1200" height="280" viewBox="0 0 1200 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="all_box_devtool — DevTools extension for all_box">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D47A1"/>
+      <stop offset="55%" stop-color="#0175C2"/>
+      <stop offset="100%" stop-color="#13B9FD"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.04"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="280" rx="20" fill="url(#bg)"/>
+
+  <!-- subtle grid dots, storage/inspector vibe -->
+  <g fill="#FFFFFF" opacity="0.10">
+    <circle cx="60" cy="40" r="3"/>
+    <circle cx="100" cy="40" r="3"/>
+    <circle cx="140" cy="40" r="3"/>
+    <circle cx="60" cy="80" r="3"/>
+    <circle cx="100" cy="80" r="3"/>
+    <circle cx="140" cy="80" r="3"/>
+    <circle cx="60" cy="120" r="3"/>
+    <circle cx="100" cy="120" r="3"/>
+    <circle cx="140" cy="120" r="3"/>
+  </g>
+
+  <!-- icon: stacked "boxes" (all_box containers) with a magnifier (devtools inspection) -->
+  <g transform="translate(920,60)">
+    <rect x="0" y="110" width="150" height="34" rx="6" fill="url(#card)" stroke="#FFFFFF" stroke-opacity="0.5"/>
+    <rect x="14" y="70" width="150" height="34" rx="6" fill="url(#card)" stroke="#FFFFFF" stroke-opacity="0.6"/>
+    <rect x="28" y="30" width="150" height="34" rx="6" fill="#FFFFFF" fill-opacity="0.92" stroke="#0D47A1" stroke-opacity="0.15"/>
+    <rect x="42" y="42" width="34" height="10" rx="2" fill="#0175C2"/>
+    <rect x="84" y="42" width="60" height="10" rx="2" fill="#0175C2" fill-opacity="0.45"/>
+
+    <g transform="translate(150,120)">
+      <circle cx="0" cy="0" r="26" fill="none" stroke="#FFFFFF" stroke-width="7"/>
+      <line x1="19" y1="19" x2="42" y2="42" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="0" cy="0" r="10" fill="#FFFFFF" fill-opacity="0.35"/>
+    </g>
+  </g>
+
+  <!-- wordmark -->
+  <text x="60" y="140" font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="56" font-weight="700" fill="#FFFFFF">
+    all_box<tspan fill="#D7ECFF">_devtool</tspan>
+  </text>
+  <text x="62" y="178" font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="22" fill="#EAF6FF" fill-opacity="0.92">
+    DevTools extension for all_box — inspect and edit containers live
+  </text>
+
+  <!-- tiny language/tech chips -->
+  <g transform="translate(62,204)" font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#0D47A1">
+    <rect x="0" y="0" width="96" height="28" rx="14" fill="#FFFFFF"/>
+    <text x="17" y="19">Flutter</text>
+
+    <rect x="106" y="0" width="76" height="28" rx="14" fill="#FFFFFF"/>
+    <text x="122" y="19">Dart</text>
+
+    <rect x="192" y="0" width="150" height="28" rx="14" fill="#FFFFFF"/>
+    <text x="208" y="19">DevTools extension</text>
+  </g>
+</svg>

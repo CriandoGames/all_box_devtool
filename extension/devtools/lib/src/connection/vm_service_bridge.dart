@@ -7,10 +7,16 @@ import '../data/containers_repository.dart';
 
 /// The only class in this extension that talks to the inspected app through
 /// the VM Service.
+///
+/// **PT-BR:** A única classe nesta extensão que conversa com o app
+/// inspecionado através do VM Service.
 class AllBoxVmServiceBridge implements ContainersBridge {
   AllBoxVmServiceBridge();
 
   /// Public `all_box` entrypoint that exports `AllBox` and `AllBoxInspector`.
+  ///
+  /// **PT-BR:** Ponto de entrada público do `all_box` que exporta `AllBox`
+  /// e `AllBoxInspector`.
   static const _allBoxLibraryUri = 'package:all_box/all_box.dart';
 
   EvalOnDartLibrary? _eval;
@@ -33,6 +39,9 @@ class AllBoxVmServiceBridge implements ContainersBridge {
 
   /// Evaluates [expression] against `package:all_box/all_box.dart` and
   /// returns the resulting Dart string.
+  ///
+  /// **PT-BR:** Avalia [expression] em relação a
+  /// `package:all_box/all_box.dart` e retorna a string Dart resultante.
   Future<String> _evalToString(String expression) async {
     final eval = _evalOnAllBox();
     final instanceRef = await eval.eval(expression, isAlive: null);
@@ -48,6 +57,9 @@ class AllBoxVmServiceBridge implements ContainersBridge {
   }
 
   /// Returns raw JSON-decoded container snapshot maps.
+  ///
+  /// **PT-BR:** Retorna mapas de snapshot de containers já decodificados de
+  /// JSON.
   @override
   Future<List<Map<String, dynamic>>> fetchSnapshot() async {
     final json = await _evalToString('AllBoxInspector.snapshotAsJson()');
@@ -59,6 +71,9 @@ class AllBoxVmServiceBridge implements ContainersBridge {
   }
 
   /// Returns a raw JSON-decoded snapshot for one container.
+  ///
+  /// **PT-BR:** Retorna um snapshot já decodificado de JSON para um único
+  /// container.
   Future<Map<String, dynamic>?> fetchSnapshotOf(String container) async {
     final escaped = jsonEncode(container);
     final json = await _evalToString(
@@ -72,6 +87,9 @@ class AllBoxVmServiceBridge implements ContainersBridge {
   }
 
   /// Writes [value] under [key] in [container] on the inspected app.
+  ///
+  /// **PT-BR:** Escreve [value] sob [key] em [container] no app
+  /// inspecionado.
   @override
   Future<void> writeValue(String container, String key, dynamic value) async {
     final expression = '(() { '
@@ -83,6 +101,8 @@ class AllBoxVmServiceBridge implements ContainersBridge {
   }
 
   /// Removes [key] from [container] on the inspected app.
+  ///
+  /// **PT-BR:** Remove [key] de [container] no app inspecionado.
   @override
   Future<void> removeKey(String container, String key) async {
     final expression = '(() { '
