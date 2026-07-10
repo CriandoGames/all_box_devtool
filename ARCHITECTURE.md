@@ -3,7 +3,7 @@
 ## Status
 
 `all_box_devtool` is a standalone DevTools extension package for apps that use
-`all_box: ^0.5.0`.
+`all_box: ^0.6.0`.
 
 The inspected app exposes debug-only snapshots through `AllBoxInspector`. This
 extension reads and writes data through the VM Service. `all_box` 0.5.0 does not

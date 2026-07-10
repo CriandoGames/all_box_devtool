@@ -15,7 +15,7 @@ See [ARCHITECTURE.md](./ARCHITECTURE.md) for the full design rationale.
   2 seconds, plus a manual refresh button — `all_box` 0.5.0 has no
   mutation events, so this is pull-based by design (see
   ARCHITECTURE.md, "Reactivity"/"Data Flow").
-- Requires `all_box: ^0.5.0` in the inspected app.
+- Requires `all_box: ^0.6.0` in the inspected app.
 
 ## 0.1.0
 

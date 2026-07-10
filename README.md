@@ -61,7 +61,7 @@ Service. Nothing else is required on the inspected app's side.
 
 ## 📦 Getting started
 
-1. Make sure your app depends on `all_box: ^0.5.0` or later.
+1. Make sure your app depends on `all_box: ^0.6.0` or later.
 2. Add this package as a `dev_dependency`:
 
    ```yaml
