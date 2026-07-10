@@ -6,8 +6,11 @@
 `all_box: ^0.6.0`.
 
 The inspected app exposes debug-only snapshots through `AllBoxInspector`. This
-extension reads and writes data through the VM Service. `all_box` 0.5.0 does not
-emit mutation events, so the extension uses polling plus manual refresh.
+extension reads and writes data through the VM Service. As of `all_box` 0.6.0
+the inspected app does emit a debug-only `all_box:mutation` VM Service
+extension event on every write/remove/erase, but this extension doesn't
+consume it yet, so it still uses polling plus manual refresh (see "Current
+Scope" below).
 
 ## Package Layout
 
@@ -80,10 +83,9 @@ Implemented:
 
 Not implemented:
 
-- push updates from VM Service events;
+- push updates from VM Service events — `all_box` 0.6.0 already posts an
+  `all_box:mutation` extension event on write/remove/erase; this extension
+  could subscribe to it instead of polling, but doesn't yet;
 - mutation log;
 - storage backend file path or localStorage key display;
 - broad widget test coverage.
-
-Push updates can be revisited if a future `all_box` version exposes mutation
-events in debug/profile mode.
