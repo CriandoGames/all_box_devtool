@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../data/containers_repository.dart';
 import '../../domain/container_snapshot.dart';
+import '../../shared/error_reporting.dart';
 import '../../shared/utils/bytes_format.dart';
 import '../../shared/widgets/badge.dart';
 import '../../shared/widgets/search_field.dart';
@@ -153,13 +154,40 @@ class _ErrorState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Text(
-          'Could not load containers:\n$error',
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Theme.of(context).colorScheme.error),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Could not load containers',
+              textAlign: TextAlign.center,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleSmall
+                  ?.copyWith(color: colorScheme.error),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              friendlyErrorMessage(error),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: colorScheme.error),
+            ),
+            const SizedBox(height: 8),
+            SelectableText(
+              // Technical detail for bug reports — full text is in the
+              // browser console (see error_reporting.dart), this is just
+              // enough to identify *which* console line to look for.
+              error.runtimeType.toString(),
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                    fontFamily: 'monospace',
+                  ),
+            ),
+          ],
         ),
       ),
     );

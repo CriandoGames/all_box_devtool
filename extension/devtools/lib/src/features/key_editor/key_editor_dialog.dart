@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../data/containers_repository.dart';
+import '../../shared/error_reporting.dart';
 import 'json_value_editor.dart';
 
 /// Dialog to view, edit, or delete a single entry of a container.
@@ -56,7 +57,8 @@ class _KeyEditorDialogState extends State<KeyEditorDialog> {
     try {
       await action();
       if (mounted) Navigator.of(context).pop(true);
-    } on Object catch (error) {
+    } on Object catch (error, stackTrace) {
+      logCaughtError('KeyEditorDialog._run', error, stackTrace);
       if (mounted) setState(() => _error = error);
     } finally {
       if (mounted) setState(() => _busy = false);
@@ -99,7 +101,7 @@ class _KeyEditorDialogState extends State<KeyEditorDialog> {
             if (_error != null) ...[
               const SizedBox(height: 8),
               Text(
-                'Failed: $_error',
+                friendlyErrorMessage(_error!),
                 style: TextStyle(color: colorScheme.error),
               ),
             ],

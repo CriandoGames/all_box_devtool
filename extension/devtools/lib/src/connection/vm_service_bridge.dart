@@ -66,7 +66,15 @@ class AllBoxVmServiceBridge implements ContainersBridge {
       );
     }
 
-    final instance = await eval.safeGetInstance(instanceRef, null);
+    // `isAlive` must be a real `Disposable`, not `null`: `safeGetInstance`
+    // (via `_verifySaneValue`) treats `isAlive == null` as "already
+    // cancelled" unconditionally (`isAlive?.disposed ?? true`), so passing
+    // `null` here made every successful eval throw `CancelledException`
+    // right after fetching the value. `eval` itself is a `Disposable`
+    // (`EvalOnDartLibrary extends DisposableController`) and stays alive
+    // until `AllBoxVmServiceBridge.dispose()` calls `_eval?.dispose()`, so
+    // it's the right thing to pass here.
+    final instance = await eval.safeGetInstance(instanceRef, eval);
     return instance.valueAsString ?? '';
   }
 
