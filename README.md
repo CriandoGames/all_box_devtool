@@ -38,9 +38,10 @@
   delete it — writes go straight to the running app through the VM
   Service.
 - 🔁 **Polling refresh.** The panel refreshes automatically every 2
-  seconds, plus a manual refresh button. `all_box` 0.6.0 has no mutation
-  events (see [How it works](#️-how-it-works)), so this is pull-based by
-  design, not a limitation waiting to be fixed.
+  seconds, plus a manual refresh button. `all_box` 0.6.0 does post
+  debug-only VM Service mutation events on write/remove/erase, but this
+  extension doesn't consume them yet (see
+  [How it works](#️-how-it-works)) — refreshing is pull-based for now.
 - 🧯 **Debug/profile only.** `all_box`'s introspection (`AllBoxInspector`)
   is a no-op in release builds — nothing here adds runtime overhead to a
   shipped app, and there's nothing to see in a release build's DevTools
@@ -92,11 +93,14 @@ app is running.
   `AllBox(container).write(...)`/`.remove(...)`) in the app's main
   isolate. No package is added to the inspected app's own dependency
   graph beyond `all_box` itself.
-- `all_box` has no built-in reactivity by design (see its own
-  [README](https://github.com/CriandoGames/all_box#-need-reactivity)), so
-  this extension is pull-based: a `PollingController` refreshes every 2
-  seconds, and every write/delete triggers an immediate extra refresh so
-  the UI reflects your own edits right away.
+- `all_box` has no built-in *Dart-visible* reactivity by design (see its
+  own [README](https://github.com/CriandoGames/all_box#-need-reactivity)).
+  As of `all_box` 0.6.0 it also posts a debug-only VM Service extension
+  event (`all_box:mutation`) after every write/remove/erase, aimed
+  exactly at tooling like this — but this extension doesn't listen for it
+  yet, so it stays pull-based for now: a `PollingController` refreshes
+  every 2 seconds, and every write/delete triggers an immediate extra
+  refresh so the UI reflects your own edits right away.
 - Full design rationale, folder-by-folder responsibilities, and the
   reasoning behind each decision: [ARCHITECTURE.md](./ARCHITECTURE.md).
 

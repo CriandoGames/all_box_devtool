@@ -39,9 +39,10 @@
   execução através do VM Service.
 - 🔁 **Atualização por polling.** O painel se atualiza automaticamente a
   cada 2 segundos, além de um botão de atualização manual. O `all_box`
-  0.5.0 não tem eventos de mutação (veja
-  [Como funciona](#️-como-funciona)), então isso é intencionalmente
-  baseado em pull, não uma limitação a ser corrigida.
+  0.6.0 já posta eventos de mutação (debug-only) no VM Service em
+  write/remove/erase, mas esta extensão ainda não os consome (veja
+  [Como funciona](#️-como-funciona)) — por enquanto a atualização
+  continua baseada em pull.
 - 🧯 **Somente debug/profile.** A introspecção do `all_box`
   (`AllBoxInspector`) é um no-op em builds de release — nada aqui
   adiciona overhead em tempo de execução a um app publicado, e não há
