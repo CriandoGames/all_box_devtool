@@ -5,17 +5,17 @@ packages:
     dependency: "direct main"
     description:
       name: all_box
-      sha256: "9fc1800855c6cc916d9f27f9d7d4c96a1ef84f7b76ea5d985cd7657ee6460d9a"
+      sha256: "9d581e9374453347cb1e7ede422313b1ffd8f0ec762dc7dd3f02afb60e160ed2"
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.0"
+    version: "0.6.0"
   all_box_devtool:
     dependency: "direct dev"
     description:
       path: ".."
       relative: true
     source: path
-    version: "0.2.0"
+    version: "1.0.0"
   async:
     dependency: transitive
     description:
