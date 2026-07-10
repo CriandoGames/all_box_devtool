@@ -13,11 +13,25 @@ import '../data/containers_repository.dart';
 class AllBoxVmServiceBridge implements ContainersBridge {
   AllBoxVmServiceBridge();
 
-  /// Public `all_box` entrypoint that exports `AllBox` and `AllBoxInspector`.
+  /// Library where `AllBox` and `AllBoxInspector` are actually *declared*.
   ///
-  /// **PT-BR:** Ponto de entrada público do `all_box` que exporta `AllBox`
-  /// e `AllBoxInspector`.
-  static const _allBoxLibraryUri = 'package:all_box/all_box.dart';
+  /// `package:all_box/all_box.dart` is a barrel file — it only has `export`
+  /// statements, no local declarations. The VM Service's `evaluate` only
+  /// resolves names declared directly in the target library, not names it
+  /// re-exports from another file, so eval'ing against the barrel file
+  /// fails to find `AllBoxInspector` (silently, returning a null
+  /// `InstanceRef` instead of throwing). Pointing this at the file where
+  /// both classes are actually declared fixes that.
+  ///
+  /// **PT-BR:** Biblioteca onde `AllBox` e `AllBoxInspector` são de fato
+  /// *declarados*. `package:all_box/all_box.dart` é um barrel file — só tem
+  /// `export`, nenhuma declaração local. O `evaluate` do VM Service só
+  /// resolve nomes declarados diretamente na biblioteca alvo, não nomes
+  /// reexportados de outro arquivo, então avaliar contra o barrel file falha
+  /// em achar `AllBoxInspector` (silenciosamente, retornando um
+  /// `InstanceRef` nulo em vez de lançar exceção). Apontar isso para o
+  /// arquivo onde as duas classes são de fato declaradas resolve isso.
+  static const _allBoxLibraryUri = 'package:all_box/src/core/all_box_impl.dart';
 
   EvalOnDartLibrary? _eval;
 

@@ -40502,7 +40502,7 @@ k=A.ff("serviceManager",l).x
 if(k==null)A.a2(A.ak("AllBoxVmServiceBridge: no active VM Service connection."))
 o=p.a
 if(o==null){n=A.ff("serviceManager",l)
-o=p.a=A.awR("package:all_box/all_box.dart",k,A.ff("serviceManager",l).e.y,n)}s=3
+o=p.a=A.awR("package:all_box/src/core/all_box_impl.dart",k,A.ff("serviceManager",l).e.y,n)}s=3
 return A.t(o.ait(a,null),$async$n1)
 case 3:m=c
 if(m==null)throw A.i(A.ak("AllBoxVmServiceBridge: `"+a+"` returned null. Is the inspected app using all_box >= 0.5.0?"))

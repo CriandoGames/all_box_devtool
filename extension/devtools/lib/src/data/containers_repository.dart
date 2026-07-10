@@ -63,7 +63,12 @@ class ContainersRepository {
             growable: false,
           )..sort((a, b) => a.container.compareTo(b.container));
       _lastError.value = null;
-    } on Object catch (error) {
+    } on Object catch (error, stackTrace) {
+      // ignore: avoid_print
+      print(
+        'all_box_devtool DEBUG: refresh failed — '
+        'type=${error.runtimeType}, error=$error\n$stackTrace',
+      );
       _lastError.value = error;
     } finally {
       _isLoading.value = false;
