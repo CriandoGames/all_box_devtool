@@ -8,6 +8,7 @@ void main() {
       'container': 'settings',
       'isInitialized': true,
       'backend': 'memory',
+      'backendDetail': 'testMemory',
       'pendingFlush': false,
       'entries': {'theme': 'dark', 'count': 2},
       'approximateSizeBytes': 42,
@@ -16,6 +17,8 @@ void main() {
     expect(snapshot.container, 'settings');
     expect(snapshot.isInitialized, isTrue);
     expect(snapshot.backend, AllBoxBackendKind.memory);
+    expect(snapshot.backendDetail, 'testMemory');
+    expect(snapshot.backendLabel, 'Memory');
     expect(snapshot.pendingFlush, isFalse);
     expect(snapshot.entries, {'theme': 'dark', 'count': 2});
     expect(snapshot.approximateSizeBytes, 42);
@@ -32,5 +35,21 @@ void main() {
 
     expect(filtered.entries, {'ThemeMode': 'dark'});
     expect(snapshot.entries, {'ThemeMode': 'dark', 'token': 'abc'});
+  });
+
+  test('backendLabel includes optional all_box web backend detail', () {
+    final localStorage = ContainerSnapshot.fromJson({
+      'container': 'settings',
+      'backend': 'web',
+      'backendDetail': 'localStorage',
+    });
+    final indexedDb = ContainerSnapshot.fromJson({
+      'container': 'settings',
+      'backend': 'web',
+      'backendDetail': 'indexedDBMigration',
+    });
+
+    expect(localStorage.backendLabel, 'Web (localStorage)');
+    expect(indexedDb.backendLabel, 'Web (IndexedDB migration)');
   });
 }

@@ -139,7 +139,7 @@ class _ContainerListTile extends StatelessWidget {
         children: [
           if (snapshot.pendingFlush)
             const AllBoxBadge(label: 'pending', color: Colors.orange),
-          AllBoxBadge(label: snapshot.backend.label, color: Colors.blueGrey),
+          AllBoxBadge(label: snapshot.backendLabel, color: Colors.blueGrey),
         ],
       ),
       onTap: onTap,

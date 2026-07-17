@@ -18,6 +18,7 @@ class ContainerSnapshot {
     required this.container,
     required this.isInitialized,
     required this.backend,
+    required this.backendDetail,
     required this.pendingFlush,
     required this.entries,
     required this.approximateSizeBytes,
@@ -29,6 +30,7 @@ class ContainerSnapshot {
       container: json['container'] as String? ?? '',
       isInitialized: json['isInitialized'] as bool? ?? false,
       backend: AllBoxBackendKind.fromJson(json['backend']),
+      backendDetail: json['backendDetail'] as String?,
       pendingFlush: json['pendingFlush'] as bool? ?? false,
       entries: rawEntries is Map
           ? Map<String, dynamic>.from(rawEntries)
@@ -41,9 +43,12 @@ class ContainerSnapshot {
   final String container;
   final bool isInitialized;
   final AllBoxBackendKind backend;
+  final String? backendDetail;
   final bool pendingFlush;
   final Map<String, dynamic> entries;
   final int approximateSizeBytes;
+
+  String get backendLabel => backend.label(backendDetail);
 
   List<String> get sortedKeys => entries.keys.toList()..sort();
 
@@ -65,6 +70,7 @@ class ContainerSnapshot {
       container: container,
       isInitialized: isInitialized,
       backend: backend,
+      backendDetail: backendDetail,
       pendingFlush: pendingFlush,
       entries: filtered,
       approximateSizeBytes: approximateSizeBytes,

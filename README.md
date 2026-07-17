@@ -57,12 +57,14 @@ The app you're debugging must depend on:
 
 ```yaml
 dependencies:
-  all_box: ^0.6.0
+  all_box: ^0.7.0
 ```
 
 `all_box` 0.6.0 is what introduced `AllBoxInspector` — the debug-only,
 read-only introspection surface this extension reads through the VM
-Service. Nothing else is required on the inspected app's side.
+Service. This extension is compatible with newer `all_box` releases too;
+use `^1.0.0-beta.2` explicitly if you want to validate the beta IndexedDB
+Web backend.
 
 ## 📦 Step-by-step setup
 
@@ -71,10 +73,17 @@ Service. Nothing else is required on the inspected app's side.
 
    ```yaml
    dependencies:
-     all_box: ^0.6.0
+     all_box: ^0.7.0
 
    dev_dependencies:
-     all_box_devtool: ^1.0.0
+     all_box_devtool: ^1.0.1
+   ```
+
+   To test the current beta channel instead, use:
+
+   ```yaml
+   dependencies:
+     all_box: ^1.0.0-beta.2
    ```
 
 2. Run:

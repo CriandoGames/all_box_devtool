@@ -59,12 +59,14 @@ O app que você está depurando precisa depender de:
 
 ```yaml
 dependencies:
-  all_box: ^0.6.0
+  all_box: ^0.7.0
 ```
 
 Foi o `all_box` 0.6.0 que introduziu o `AllBoxInspector` — a superfície
 de introspecção somente-leitura e debug-only que esta extensão lê através
-do VM Service. Nada mais é exigido do lado do app inspecionado.
+do VM Service. Esta extensão também é compatível com versões mais novas
+do `all_box`; use `^1.0.0-beta.2` explicitamente se quiser validar o
+backend Web IndexedDB beta.
 
 ## 📦 Passo a passo
 
@@ -74,10 +76,17 @@ do VM Service. Nada mais é exigido do lado do app inspecionado.
 
    ```yaml
    dependencies:
-     all_box: ^0.6.0
+     all_box: ^0.7.0
 
    dev_dependencies:
-     all_box_devtool: ^1.0.0
+     all_box_devtool: ^1.0.1
+   ```
+
+   Para testar o canal beta atual, use:
+
+   ```yaml
+   dependencies:
+     all_box: ^1.0.0-beta.2
    ```
 
 2. Rode:

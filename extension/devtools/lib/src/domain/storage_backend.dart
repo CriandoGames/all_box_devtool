@@ -27,18 +27,34 @@ enum AllBoxBackendKind {
   }
 
   /// Short label for badges/tables.
-  String get label {
+  String label([String? detail]) {
     switch (this) {
       case AllBoxBackendKind.io:
         return 'IO (disk)';
       case AllBoxBackendKind.web:
-        return 'Web (localStorage)';
+        return _webLabel(detail);
       case AllBoxBackendKind.memory:
         return 'Memory';
       case AllBoxBackendKind.unsupported:
         return 'Unsupported';
       case AllBoxBackendKind.custom:
         return 'Custom';
+    }
+  }
+
+  static String _webLabel(String? detail) {
+    switch (detail) {
+      case 'localStorage':
+        return 'Web (localStorage)';
+      case 'indexedDB':
+        return 'Web (IndexedDB)';
+      case 'indexedDBMigration':
+        return 'Web (IndexedDB migration)';
+      case null:
+      case '':
+        return 'Web';
+      default:
+        return 'Web ($detail)';
     }
   }
 }

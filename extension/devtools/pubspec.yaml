@@ -1,13 +1,9 @@
 name: all_box_devtool_extension
 description: >
   Flutter Web app for the all_box DevTools extension panel. Built with
-  package:devtools_extensions; runs embedded (iFrame) inside Flutter/Dart
-  DevTools, connected via the VM Service to an app that depends on
-  all_box. Not published to pub.dev on its own — its build output is
-  copied into ../ (this package's `extension/devtools/` directory) per
-  https://docs.flutter.dev/tools/devtools/custom-tool.
+  package:devtools_extensions;
 publish_to: "none"
-version: 1.0.0
+version: 1.0.1
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
@@ -16,7 +12,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  all_observer: ^1.5.3
+  all_observer: ^1.5.5
   cupertino_icons: ^1.0.8
   devtools_extensions: ^0.5.1
   devtools_app_shared: ^0.5.1

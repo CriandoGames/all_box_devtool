@@ -1,6 +1,6 @@
 # DevTools extension metadata.
 name: all_box_devtool
 issueTracker: https://github.com/CriandoGames/all_box_devtool/issues
-version: 1.0.0
+version: 1.0.1
 materialIconCodePoint: "0xf1c6"
 requiresConnection: true

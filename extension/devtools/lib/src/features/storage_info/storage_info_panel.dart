@@ -32,7 +32,7 @@ class StorageInfoPanel extends StatelessWidget {
       runSpacing: 4,
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        AllBoxBadge(label: snapshot.backend.label, color: Colors.blueGrey),
+        AllBoxBadge(label: snapshot.backendLabel, color: Colors.blueGrey),
         if (snapshot.pendingFlush)
           const AllBoxBadge(label: 'flush pending', color: Colors.orange),
         if (!snapshot.isInitialized)
